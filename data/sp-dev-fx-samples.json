@@ -2062,6 +2062,29 @@
       "sampleType": "samples"
     },
     {
+      "name": "pnp-sp-dev-spfx-extensions-react-field-reporting",
+      "title": "React Document Reporting Field Customizer",
+      "url": "https://github.com/pnp/sp-dev-fx-extensions/tree/main/samples/react-field-reporting",
+      "description": "A React-based SPFx application for monitoring user activity within SharePoint documents.",
+      "image": "https://github.com/pnp/sp-dev-fx-extensions/raw/main/samples/react-field-reporting/assets/app-charts.png",
+      "authors": [
+        {
+          "name": "Ejaz Hussain",
+          "pictureUrl": "https://github.com/ejazhussain.png"
+        }
+      ],
+      "tags": [
+        "SharePoint"
+      ],
+      "createDate": "2023-12-25",
+      "updateDate": "2023-12-31",
+      "version": "1.18.2",
+      "componentType": "webpart",
+      "extensionType": null,
+      "sampleGalerry": "sp-dev-fx-extensions",
+      "sampleType": "samples"
+    },
+    {
       "name": "pnp-sp-dev-spfx-extensions-react-field-slider",
       "title": "Slider Field Customizer",
       "url": "https://github.com/pnp/sp-dev-fx-extensions/tree/main/samples/react-field-slider",
@@ -2407,8 +2430,8 @@
         "SharePoint"
       ],
       "createDate": "2023-10-04",
-      "updateDate": "2023-10-04",
-      "version": "1.18.0",
+      "updateDate": "2024-08-28",
+      "version": "1.19.0",
       "componentType": "extension",
       "extensionType": "ListViewCommandSet",
       "sampleGalerry": "sp-dev-fx-extensions",
@@ -2653,6 +2676,29 @@
       "version": "1.17.0",
       "componentType": "webpart",
       "extensionType": null,
+      "sampleGalerry": "sp-dev-fx-webparts",
+      "sampleType": "samples"
+    },
+    {
+      "name": "pnp-sp-dev-spfx-web-parts-js-applicationinsights-api-calls-tracking",
+      "title": "External API calls tracking with Application Insights",
+      "url": "https://github.com/pnp/sp-dev-fx-webparts/tree/main/samples/js-applicationinsights-api-calls-tracking",
+      "description": "This SPFx solution is designed to monitor and track API calls executed within any SharePoint Online (SPO) site.",
+      "image": "https://github.com/pnp/sp-dev-fx-webparts/raw/main/samples/js-applicationinsights-api-calls-tracking/assets/alerttule.png",
+      "authors": [
+        {
+          "name": "Kinga Kazala",
+          "pictureUrl": "https://github.com/kkazala.png"
+        }
+      ],
+      "tags": [
+        "SharePoint"
+      ],
+      "createDate": "2024-08-10",
+      "updateDate": "2024-08-10",
+      "version": "1.19.0",
+      "componentType": "extension",
+      "extensionType": "ApplicationCustomizer",
       "sampleGalerry": "sp-dev-fx-webparts",
       "sampleType": "samples"
     },
@@ -3556,6 +3602,29 @@
       "sampleType": "samples"
     },
     {
+      "name": "pnp-sp-dev-spfx-web-parts-react-appinsights-usage",
+      "title": "React AppInsights Usage WebParts",
+      "url": "https://github.com/pnp/sp-dev-fx-webparts/tree/main/samples/react-appinsights-usage",
+      "description": "This web parts shows different use cases for capturing data in your application and store it into the Azure Application Insights service.",
+      "image": "https://github.com/pnp/sp-dev-fx-webparts/raw/main/samples/react-appinsights-dashboard/assets/AppInsights_Dashboard.gif",
+      "authors": [
+        {
+          "name": "Peter Paul Kirschner",
+          "pictureUrl": "https://github.com/petkir.png"
+        }
+      ],
+      "tags": [
+        "SharePoint"
+      ],
+      "createDate": "2024-05-26",
+      "updateDate": "2024-05-26",
+      "version": "1.18.2",
+      "componentType": "webpart",
+      "extensionType": null,
+      "sampleGalerry": "sp-dev-fx-webparts",
+      "sampleType": "samples"
+    },
+    {
       "name": "pnp-sp-dev-spfx-web-parts-react-associated-sites-links",
       "title": "Associated Sites Links Web Part",
       "url": "https://github.com/pnp/sp-dev-fx-webparts/tree/main/samples/react-associated-sites-links",
@@ -3872,7 +3941,7 @@
         "SharePoint"
       ],
       "createDate": "2020-12-04",
-      "updateDate": "2023-12-29",
+      "updateDate": "2024-06-28",
       "version": "1.12.1",
       "componentType": "webpart",
       "extensionType": null,
@@ -4472,6 +4541,29 @@
       "sampleType": "samples"
     },
     {
+      "name": "pnp-sp-dev-spfx-web-parts-react-dataverse",
+      "title": "Consuming Dataverse API using SPFx",
+      "url": "https://github.com/pnp/sp-dev-fx-webparts/tree/main/samples/react-dataverse",
+      "description": "Enhance the potential of SharePoint by integrating it with Dataverse, a low-code data platform from Microsoft",
+      "image": "https://github.com/pnp/sp-dev-fx-webparts/raw/main/samples/react-dataverse/assets/dataverseclient.PNG",
+      "authors": [
+        {
+          "name": "Marcin Wojciechowski",
+          "pictureUrl": "https://github.com/mgwojciech.png"
+        }
+      ],
+      "tags": [
+        "SharePoint"
+      ],
+      "createDate": "2024-08-12",
+      "updateDate": "2024-08-12",
+      "version": "1.18.0",
+      "componentType": "webpart",
+      "extensionType": null,
+      "sampleGalerry": "sp-dev-fx-webparts",
+      "sampleType": "samples"
+    },
+    {
       "name": "pnp-sp-dev-spfx-web-parts-react-dev-radar",
       "title": "Dev-Radar for SharePoint Online",
       "url": "https://github.com/pnp/sp-dev-fx-webparts/tree/main/samples/react-dev-radar",
@@ -4549,8 +4641,8 @@
         "SharePoint"
       ],
       "createDate": "2020-11-21",
-      "updateDate": "2020-11-21",
-      "version": "1.11.0",
+      "updateDate": "2024-06-28",
+      "version": "1.18.2",
       "componentType": "webpart",
       "extensionType": null,
       "sampleGalerry": "sp-dev-fx-webparts",
@@ -4742,7 +4834,7 @@
       ],
       "createDate": "2023-09-23",
       "updateDate": "2023-10-28",
-      "version": "1.18.0",
+      "version": "1.19.0",
       "componentType": "webpart",
       "extensionType": null,
       "sampleGalerry": "sp-dev-fx-webparts",
@@ -5884,7 +5976,7 @@
       ],
       "createDate": "2023-01-09",
       "updateDate": "2023-11-30",
-      "version": "1.18.2",
+      "version": "1.19.0",
       "componentType": "adaptiveCardExtension",
       "extensionType": null,
       "sampleGalerry": "sp-dev-fx-webparts",
@@ -6240,8 +6332,8 @@
         "SharePoint"
       ],
       "createDate": "2020-07-02",
-      "updateDate": "2020-07-02",
-      "version": "1.13.0",
+      "updateDate": "2024-05-26",
+      "version": "1.19.0",
       "componentType": "webpart",
       "extensionType": null,
       "sampleGalerry": "sp-dev-fx-webparts",
@@ -7033,7 +7125,7 @@
     },
     {
       "name": "pnp-sp-dev-spfx-web-parts-react-my-onedrive-info",
-      "title": "My OneDrive Info Web Part",
+      "title": "My OneDrive Info",
       "url": "https://github.com/pnp/sp-dev-fx-webparts/tree/main/samples/react-my-onedrive-info",
       "description": "MyOneDriveInfo solution contains Adaptive card extension for Viva connection with below functionalities",
       "image": "https://github.com/pnp/sp-dev-fx-webparts/raw/main/samples/react-my-onedrive-info/assets/ACEScreenshot1.png",
@@ -7047,8 +7139,8 @@
         "SharePoint"
       ],
       "createDate": "2023-02-03",
-      "updateDate": "2023-02-03",
-      "version": "1.16.1",
+      "updateDate": "2024-08-26",
+      "version": "1.19.0",
       "componentType": "adaptiveCardExtension",
       "extensionType": null,
       "sampleGalerry": "sp-dev-fx-webparts",
@@ -8127,6 +8219,29 @@
       "sampleType": "samples"
     },
     {
+      "name": "pnp-sp-dev-spfx-web-parts-react-quick-links-grid",
+      "title": "Quick Links Grid",
+      "url": "https://github.com/pnp/sp-dev-fx-webparts/tree/main/samples/react-quick-links-grid",
+      "description": "Displays a set of quick links fetched from a SharePoint list.",
+      "image": "https://github.com/pnp/sp-dev-fx-webparts/raw/main/samples/react-quick-links-grid/assets/preview.gif",
+      "authors": [
+        {
+          "name": "Venkadesh Sundaramurthy",
+          "pictureUrl": "https://github.com/VenkadeshSundaramurthy.png"
+        }
+      ],
+      "tags": [
+        "SharePoint"
+      ],
+      "createDate": "2024-08-11",
+      "updateDate": "2024-08-11",
+      "version": "1.19.0",
+      "componentType": "webpart",
+      "extensionType": null,
+      "sampleGalerry": "sp-dev-fx-webparts",
+      "sampleType": "samples"
+    },
+    {
       "name": "pnp-sp-dev-spfx-web-parts-react-quick-poll",
       "title": "Quick Poll Web Part",
       "url": "https://github.com/pnp/sp-dev-fx-webparts/tree/main/samples/react-quick-poll",
@@ -8521,7 +8636,7 @@
       ],
       "createDate": "2019-10-13",
       "updateDate": "2023-04-24",
-      "version": "1.18.2",
+      "version": "1.19.0",
       "componentType": "webpart",
       "extensionType": null,
       "sampleGalerry": "sp-dev-fx-webparts",
@@ -8592,6 +8707,29 @@
       "updateDate": "2017-05-11",
       "version": "1.0.2",
       "componentType": null,
+      "extensionType": null,
+      "sampleGalerry": "sp-dev-fx-webparts",
+      "sampleType": "samples"
+    },
+    {
+      "name": "pnp-sp-dev-spfx-web-parts-react-site-secure-function-call",
+      "title": "Site Secure Function Call",
+      "url": "https://github.com/pnp/sp-dev-fx-webparts/tree/main/samples/react-office-offer-creation",
+      "description": "This combined SharePoint Framework and Azure Function solution is to provide the potentially most secure access from SharePoint Framework to any kind of third party API or Microsoft Graph.",
+      "image": "https://github.com/pnp/sp-dev-fx-webparts/raw/main/samples/react-site-secure-function-call/assets/SetSiteDescreption.gif",
+      "authors": [
+        {
+          "name": "Markus Moeller",
+          "pictureUrl": "https://github.com/mmsharepoint.png"
+        }
+      ],
+      "tags": [
+        "SharePoint"
+      ],
+      "createDate": "2024-07-12",
+      "updateDate": "2024-07-12",
+      "version": "1.18.2",
+      "componentType": "webpart",
       "extensionType": null,
       "sampleGalerry": "sp-dev-fx-webparts",
       "sampleType": "samples"
