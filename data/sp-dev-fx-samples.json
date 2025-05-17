@@ -661,6 +661,10 @@
         {
           "name": "Mike Myers",
           "pictureUrl": "https://github.com/thespooler.png"
+        },
+        {
+          "name": "Sandeep P S",
+          "pictureUrl": "https://github.com/sandeep-fed.png"
         }
       ],
       "tags": [
@@ -669,6 +673,29 @@
       "createDate": "2020-06-18",
       "updateDate": "2024-12-24",
       "version": "1.20.0",
+      "componentType": "extension",
+      "extensionType": "ApplicationCustomizer",
+      "sampleGalerry": "sp-dev-fx-extensions",
+      "sampleType": "samples"
+    },
+    {
+      "name": "pnp-sp-dev-spfx-extensions-react-application-chatbubble-copilot",
+      "title": "Chatbot Integration for SharePoint Online",
+      "url": "https://github.com/pnp/sp-dev-fx-extensions/tree/main/samples/react-application-chatbubble-copilot",
+      "description": "This solution integrates a chatbot within SharePoint Online using a Tenant App Catalog and Azure AD App Registration. It provides a seamless way to enhance user engagement on SharePoint sites by embedding a customizable chatbot interface. You have a per site agent by creating it in a SharePoint list or a global one by adding json to TWE",
+      "image": null,
+      "authors": [
+        {
+          "name": "Nicolas Kheirallah",
+          "pictureUrl": "https://github.com/NicolasKheirallah.png"
+        }
+      ],
+      "tags": [
+        "SharePoint"
+      ],
+      "createDate": "2025-01-08",
+      "updateDate": "2025-01-08",
+      "version": "1.18.0",
       "componentType": "extension",
       "extensionType": "ApplicationCustomizer",
       "sampleGalerry": "sp-dev-fx-extensions",
@@ -691,7 +718,7 @@
       ],
       "createDate": "2023-07-02",
       "updateDate": "2023-07-02",
-      "version": "1.16.1",
+      "version": "1.20.0",
       "componentType": "extension",
       "extensionType": "ApplicationCustomizer",
       "sampleGalerry": "sp-dev-fx-extensions",
@@ -834,6 +861,10 @@
         {
           "name": "Brad Schlintz",
           "pictureUrl": "https://github.com/bschlintz.png"
+        },
+        {
+          "name": "Sandeep P S",
+          "pictureUrl": "https://github.com/sandeep-fed.png"
         }
       ],
       "tags": [
@@ -2024,6 +2055,29 @@
       "version": "1.20.0",
       "componentType": "extension",
       "extensionType": "ListViewCommandSet",
+      "sampleGalerry": "sp-dev-fx-extensions",
+      "sampleType": "samples"
+    },
+    {
+      "name": "pnp-sp-dev-spfx-extensions-react-copilot-aprils-fool",
+      "title": "Copilot April's Fool",
+      "url": "https://github.com/pnp/sp-dev-fx-extensions/tree/main/samples/react-copilot-aprils-fool",
+      "description": "An extention to privide a simple approach to display custom messages in SharePoint Online.",
+      "image": "https://github.com/pnp/sp-dev-fx-extensions/raw/main/samples/react-copilot-aprils-fool/assets/sample.png",
+      "authors": [
+        {
+          "name": "Valeras Narbutas",
+          "pictureUrl": "https://github.com/ValerasNarbutas.png"
+        }
+      ],
+      "tags": [
+        "SharePoint"
+      ],
+      "createDate": "2025-03-23",
+      "updateDate": "2025-03-23",
+      "version": "1.20.0",
+      "componentType": "extension",
+      "extensionType": "ApplicationCustomizer",
       "sampleGalerry": "sp-dev-fx-extensions",
       "sampleType": "samples"
     },
@@ -4250,6 +4304,29 @@
       "sampleType": "samples"
     },
     {
+      "name": "pnp-sp-dev-spfx-web-parts-react-carbon-footprint-calculator",
+      "title": "Carbon Footprint Calculator",
+      "url": "https://github.com/pnp/sp-dev-fx-webparts/tree/main/samples/react-carbon-footprint-calculator",
+      "description": "This SharePoint Framework (SPFx) web part provides users with an interactive calculator to estimate their monthly carbon footprint.",
+      "image": "https://github.com/pnp/sp-dev-fx-webparts/raw/main/samples/react-carbon-footprint-calculator/assets/sample.png",
+      "authors": [
+        {
+          "name": "João LIVIO",
+          "pictureUrl": "https://github.com/jtlivio.png"
+        }
+      ],
+      "tags": [
+        "SharePoint"
+      ],
+      "createDate": "2025-05-08",
+      "updateDate": "2025-05-08",
+      "version": "1.21.1",
+      "componentType": "webpart",
+      "extensionType": null,
+      "sampleGalerry": "sp-dev-fx-webparts",
+      "sampleType": "samples"
+    },
+    {
       "name": "pnp-sp-dev-spfx-web-parts-react-carousel",
       "title": "Carousel Web Part",
       "url": "https://github.com/pnp/sp-dev-fx-webparts/tree/main/samples/react-carousel",
@@ -4623,7 +4700,7 @@
         "SharePoint"
       ],
       "createDate": "2025-01-09",
-      "updateDate": "2025-01-10",
+      "updateDate": "2025-05-16",
       "version": "1.20.0",
       "componentType": "webpart",
       "extensionType": null,
@@ -5251,6 +5328,33 @@
       "createDate": "2024-09-01",
       "updateDate": "2024-09-01",
       "version": "1.19.0",
+      "componentType": "webpart",
+      "extensionType": null,
+      "sampleGalerry": "sp-dev-fx-webparts",
+      "sampleType": "samples"
+    },
+    {
+      "name": "pnp-sp-dev-spfx-web-parts-react-engage-hub",
+      "title": "Engage Hub",
+      "url": "https://github.com/pnp/sp-dev-fx-webparts/tree/main/samples/react-engage-hub",
+      "description": "Built purely with off-the-shelf SharePoint capabilities, Engage Hub is a contemporary SPFx-based substitute for Viva Engage. In addition to providing essential social capabilities such as liking and unliking posts, threaded comments, and comment creation, it manages post data using SharePoint Lists and Document Libraries.",
+      "image": "https://github.com/pnp/sp-dev-fx-webparts/raw/main/samples/react-engage-hub/assets/engage_hub1.png",
+      "authors": [
+        {
+          "name": "Sandeep P S",
+          "pictureUrl": "https://github.com/Sandeep-FED.png"
+        },
+        {
+          "name": "AOAI SDK",
+          "pictureUrl": "https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/openai/openai.png"
+        }
+      ],
+      "tags": [
+        "SharePoint"
+      ],
+      "createDate": "2025-04-27",
+      "updateDate": "2025-04-27",
+      "version": "1.20.0",
       "componentType": "webpart",
       "extensionType": null,
       "sampleGalerry": "sp-dev-fx-webparts",
@@ -6427,13 +6531,21 @@
         {
           "name": "Nicolas Kheirallah",
           "pictureUrl": "https://github.com/NicolasKheirallah.png"
+        },
+        {
+          "name": "Nirav Raval",
+          "pictureUrl": "https://github.com/nrvrvl.png"
+        },
+        {
+          "name": "Microsoft Graph JavaScript SDK",
+          "pictureUrl": "https://github.com/microsoftgraph/msgraph-sdk-javascript.png"
         }
       ],
       "tags": [
         "SharePoint"
       ],
       "createDate": "2025-02-28",
-      "updateDate": "2025-02-28",
+      "updateDate": "2025-04-21",
       "version": "1.20.0",
       "componentType": "webpart",
       "extensionType": null,
@@ -6515,10 +6627,10 @@
     },
     {
       "name": "pnp-sp-dev-spfx-web-parts-react-holidays-calendar",
-      "title": "Holiday Calendar Web Part",
+      "title": "Holiday calendar",
       "url": "https://github.com/pnp/sp-dev-fx-webparts/tree/main/samples/react-holidays-calendar",
-      "description": "Holiday calendar solution contains SPFx web part and Adaptive card extension for Viva connections.",
-      "image": "https://github.com/pnp/sp-dev-fx-webparts/raw/main/samples/react-holidays-calendar/assets/209691198-4d0cbc31-f0d4-49c8-a1b5-ae8701406221.png",
+      "description": "Holiday calendar solution contains SPFx web part and Adaptive card extension for Viva connections. SPFx web part provides below functionalities",
+      "image": "https://github.com/pnp/sp-dev-fx-webparts/raw/main/samples/react-holidays-calendar/assets/209691123-03ac3c5d-cc8e-490e-8cb2-837539914db8.png",
       "authors": [
         {
           "name": "Harminder Singh",
@@ -6528,9 +6640,9 @@
       "tags": [
         "SharePoint"
       ],
-      "createDate": "2023-01-09",
-      "updateDate": "2023-11-30",
-      "version": "1.20.0",
+      "createDate": "2021-01-29",
+      "updateDate": "2025-04-26",
+      "version": "1.21.0",
       "componentType": "adaptiveCardExtension",
       "extensionType": null,
       "sampleGalerry": "sp-dev-fx-webparts",
@@ -6599,7 +6711,7 @@
       ],
       "createDate": "2021-03-17",
       "updateDate": "2025-04-02",
-      "version": "1.20.0",
+      "version": "1.21.1",
       "componentType": "webpart",
       "extensionType": null,
       "sampleGalerry": "sp-dev-fx-webparts",
@@ -7455,8 +7567,8 @@
         "SharePoint"
       ],
       "createDate": "2024-03-16",
-      "updateDate": "2024-11-01",
-      "version": "1.20.0",
+      "updateDate": "2025-05-01",
+      "version": "1.21.0",
       "componentType": "webpart",
       "extensionType": null,
       "sampleGalerry": "sp-dev-fx-webparts",
@@ -7628,8 +7740,8 @@
         "SharePoint"
       ],
       "createDate": "2020-07-19",
-      "updateDate": "2020-07-19",
-      "version": "1.10.0",
+      "updateDate": "2025-04-25",
+      "version": "1.20.0",
       "componentType": "webpart",
       "extensionType": null,
       "sampleGalerry": "sp-dev-fx-webparts",
@@ -7769,9 +7881,9 @@
       "tags": [
         "SharePoint"
       ],
-      "createDate": "2023-02-03",
-      "updateDate": "2024-10-11",
-      "version": "1.20.0",
+      "createDate": "2021-01-24",
+      "updateDate": "2025-04-27",
+      "version": "1.21.0",
       "componentType": "adaptiveCardExtension",
       "extensionType": null,
       "sampleGalerry": "sp-dev-fx-webparts",
@@ -9655,6 +9767,52 @@
       ],
       "createDate": "2025-01-27",
       "updateDate": "2025-01-27",
+      "version": "1.20.0",
+      "componentType": "webpart",
+      "extensionType": null,
+      "sampleGalerry": "sp-dev-fx-webparts",
+      "sampleType": "samples"
+    },
+    {
+      "name": "pnp-sp-dev-spfx-web-parts-react-sp-emp-recognition",
+      "title": "rEmployee Recognition",
+      "url": "https://github.com/pnp/sp-dev-fx-webparts/tree/main/samples/react-sp-emp-recognition",
+      "description": "This SharePoint Framework (SPFx) web part enables organizations to celebrate employee achievements and contributions through a modern recognition system. Users can easily nominate colleagues for various types of recognition and engage with these recognitions through social reactions.",
+      "image": "https://github.com/pnp/sp-dev-fx-webparts/raw/main/samples/react-sp-emp-recognition/assets/Add recognition.png",
+      "authors": [
+        {
+          "name": "Sudeep Ghatak",
+          "pictureUrl": "https://github.com/sudeepghatak.png"
+        }
+      ],
+      "tags": [
+        "SharePoint"
+      ],
+      "createDate": "2025-04-20",
+      "updateDate": "2025-04-20",
+      "version": "1.20.0",
+      "componentType": "webpart",
+      "extensionType": null,
+      "sampleGalerry": "sp-dev-fx-webparts",
+      "sampleType": "samples"
+    },
+    {
+      "name": "pnp-sp-dev-spfx-web-parts-react-sp-org-chart",
+      "title": "Building Org Chart using a SharePoint list",
+      "url": "https://github.com/pnp/sp-dev-fx-webparts/tree/main/samples/react-sp-org-chart",
+      "description": "Displays your organization's structure based on a custom list, starting from the top boss down to everyone else.",
+      "image": "https://github.com/pnp/sp-dev-fx-webparts/raw/main/samples/react-sp-org-chart/assets/List.png",
+      "authors": [
+        {
+          "name": "Sudeep Ghatak",
+          "pictureUrl": "https://github.com/sudeepghatak.png"
+        }
+      ],
+      "tags": [
+        "SharePoint"
+      ],
+      "createDate": "2025-04-20",
+      "updateDate": "2025-04-20",
       "version": "1.20.0",
       "componentType": "webpart",
       "extensionType": null,
