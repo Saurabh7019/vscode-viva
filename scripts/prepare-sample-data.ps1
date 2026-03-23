@@ -202,13 +202,9 @@ $jsonOutput | Out-File "$workspacePath\data\sp-dev-fx-samples.json"
 $totalSamples = $samples.Count
 $statsByRepo = $samples | Group-Object -Property sampleGallery | Sort-Object Name
 
-$statsContent = @"
-## Sample Data Summary
-
-**Total Samples:** $totalSamples
-
-### Breakdown by Repository
-"@
+$statsContent = "## Sample Data Summary`n`n"
+$statsContent += "**Total Samples:** $totalSamples`n`n"
+$statsContent += "### Breakdown by Repository"
 
 foreach ($stat in $statsByRepo) {
     $statsContent += "`n- **$($stat.Name):** $($stat.Count)"
