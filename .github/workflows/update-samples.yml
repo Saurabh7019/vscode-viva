@@ -11,6 +11,9 @@ jobs:
     name: "Update samples json"
     runs-on: windows-latest
 
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
     permissions:
       contents: write
       pull-requests: write
