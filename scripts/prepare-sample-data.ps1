@@ -2,6 +2,23 @@ param ([string[]]$workspacePath)
 
 $sampleRepos = @("sp-dev-fx-aces", "sp-dev-fx-extensions", "sp-dev-fx-library-components", "sp-dev-fx-webparts")
 
+function Test-JsonContent {
+    param (
+        [string]$FilePath,
+        [string]$JsonContent
+    )
+    
+    try {
+        $null = ConvertFrom-Json -InputObject $JsonContent -ErrorAction Stop
+        return $true
+    }
+    catch {
+        Write-Warning "Invalid JSON in: $FilePath"
+        Write-Warning "Error: $($_.Exception.Message)"
+        return $false
+    }
+}
+
 function Parse-SampleJsonFiles {
     param (
         [string]$sampleRepo,
@@ -14,51 +31,100 @@ function Parse-SampleJsonFiles {
 
         try {
             $sampleContent = Get-Content -Path $sample.FullName -Raw
+            
+            if (-not (Test-JsonContent -FilePath $sample.FullName -JsonContent $sampleContent)) {
+                continue 
+            }
+
             $sampleJsons = ConvertFrom-Json -InputObject $sampleContent
             
             foreach ($sampleJson in $sampleJsons) {
-                $yoRcPath = $sample.FullName.ToLower().Replace("assets\sample.json", ".yo-rc.json")
-
-                if (-not (Test-Path -Path $yoRcPath)) {
-                    Continue
-                }
-
-                $yoRcContent = Get-Content -Path $yoRcPath -Raw
-                $yoRcJson = ConvertFrom-Json -InputObject $yoRcContent
-                $yoRcJson = $yoRcJson.PSObject.Properties.Value
-
                 $version = $null
-                if ($null -ne $yoRcJson.version -and $yoRcJson.version.GetType().BaseType -eq [System.Array]) {
-                    if ($null -ne $yoRcJson.version[$yoRcJson.version.Length - 1]) {
-                        $version = $yoRcJson.version[$yoRcJson.version.Length - 1]
-                    }
-                    else {
-                        $version = $yoRcJson.version[0]
-                    }
-                }
-                else {
-                    $version = $yoRcJson.version
-                }
-
                 $componentType = $null
-                if ($null -ne $yoRcJson.componentType -and $yoRcJson.componentType.GetType().BaseType -eq [System.Array]) {
-                    if ($null -ne $yoRcJson.componentType[$yoRcJson.componentType.Length - 1]) {
-                        $componentType = $yoRcJson.componentType[$yoRcJson.componentType.Length - 1]
+                $extensionType = $null
+                $isSPFxProject = $false
+
+                $sampleFolder = Split-Path -Path $sample.FullName -Parent
+                $sampleFolder = Split-Path -Path $sampleFolder -Parent
+                $yoRcPath = Join-Path -Path $sampleFolder -ChildPath ".yo-rc.json"
+
+                if (Test-Path -Path $yoRcPath) {
+                    try {
+                        $yoRcContent = Get-Content -Path $yoRcPath -Raw
+                        $yoRcJson = ConvertFrom-Json -InputObject $yoRcContent
+                        $yoRcJson = $yoRcJson.PSObject.Properties.Value
+
+                        if ($null -ne $yoRcJson) {
+                            $isSPFxProject = $true
+
+                            if ($null -ne $yoRcJson.version -and $yoRcJson.version.GetType().BaseType -eq [System.Array]) {
+                                if ($null -ne $yoRcJson.version[$yoRcJson.version.Length - 1]) {
+                                    $version = $yoRcJson.version[$yoRcJson.version.Length - 1]
+                                }
+                                else {
+                                    $version = $yoRcJson.version[0]
+                                }
+                            }
+                            else {
+                                $version = $yoRcJson.version
+                            }
+
+                            if ($null -ne $yoRcJson.componentType -and $yoRcJson.componentType.GetType().BaseType -eq [System.Array]) {
+                                if ($null -ne $yoRcJson.componentType[$yoRcJson.componentType.Length - 1]) {
+                                    $componentType = $yoRcJson.componentType[$yoRcJson.componentType.Length - 1]
+                                }
+                                else {
+                                    $componentType = $yoRcJson.componentType[0]
+                                }
+                            }
+                            else {
+                                $componentType = $yoRcJson.componentType
+                            }
+
+                            if ($null -ne $yoRcJson.extensionType -and $yoRcJson.extensionType.GetType().BaseType -eq [System.Array]) {
+                                $extensionType = $yoRcJson.extensionType[$yoRcJson.extensionType.Length - 1]
+                            }
+                            else {
+                                $extensionType = $yoRcJson.extensionType
+                            }
+                        }
                     }
-                    else {
-                        $componentType = $yoRcJson.componentType[0]
+                    catch {
+                        Write-Warning "Failed to parse package.json for $($sample.FullName): $($_.Exception.Message)"
                     }
-                }
-                else {
-                    $componentType = $yoRcJson.componentType
                 }
 
-                $extensionType = $null
-                if ($null -ne $yoRcJson.extensionType -and $yoRcJson.extensionType.GetType().BaseType -eq [System.Array]) {
-                    $extensionType = $yoRcJson.extensionType[$yoRcJson.extensionType.Length - 1]
+                if (-not $isSPFxProject) {
+                    $packageJsonPath = Join-Path -Path $sampleFolder -ChildPath "package.json"
+
+                    if (-not (Test-Path -Path $packageJsonPath)) {
+                        Continue
+                    }
+
+                    try {
+                        $packageJsonContent = Get-Content -Path $packageJsonPath -Raw
+                        $packageJson = ConvertFrom-Json -InputObject $packageJsonContent
+                        
+                        if ($null -ne $packageJson.dependencies.'@microsoft/sp-core-library') {
+                            $isSPFxProject = $true
+                            
+                            $coreLibVersion = $packageJson.dependencies.'@microsoft/sp-core-library'
+                            $version = $coreLibVersion -replace '[\^~>=<]', ''
+                            
+                            switch ($sampleRepo) {
+                                'sp-dev-fx-webparts' { $componentType = 'webPart' }
+                                'sp-dev-fx-extensions' { $componentType = 'extension' }
+                                'sp-dev-fx-aces' { $componentType = 'adaptiveCardExtension' }
+                                'sp-dev-fx-library-components' { $componentType = 'library' }
+                            }
+                        }
+                    }
+                    catch {
+                    }
                 }
-                else {
-                    $extensionType = $yoRcJson.extensionType
+
+                if (-not $isSPFxProject) {
+                    Continue
                 }
 
                 $sampleAuthors = @()
@@ -69,6 +135,11 @@ function Parse-SampleJsonFiles {
                     }
                 }
 
+                $tags = @()
+                if ($null -ne $sampleJson.products) {
+                    $tags = $sampleJson.products
+                }
+
                 $samples += [pscustomobject]@{
                     name          = $sampleJson.name; 
                     title         = $sampleJson.title; 
@@ -76,13 +147,13 @@ function Parse-SampleJsonFiles {
                     description   = $sampleJson.shortDescription; 
                     image         = $sampleJson.thumbnails[0].url; 
                     authors       = $sampleAuthors;
-                    tags          = $sampleJson.products;
+                    tags          = $tags;
                     createDate    = $sampleJson.creationDateTime;
                     updateDate    = $sampleJson.updateDateTime;
                     version       = $version;  
                     componentType = $componentType;
                     extensionType = $extensionType;       
-                    sampleGalerry = $sampleRepo
+                    sampleGallery = $sampleRepo;
                     sampleType    = $folder
                 }
             }
@@ -101,13 +172,11 @@ foreach ($sampleRepo in $sampleRepos) {
     Write-Output $sampleRepo
 
     if (Test-Path -Path "$workspacePath\$sampleRepo\samples" -PathType Container) {
-        $output = Parse-SampleJsonFiles -sampleRepo $sampleRepo -folder 'samples'
+        $samples += Parse-SampleJsonFiles -sampleRepo $sampleRepo -folder 'samples'
     }
     if (Test-Path -Path "$workspacePath\$sampleRepo\scenarios" -PathType Container) {
-        $output = Parse-SampleJsonFiles -sampleRepo $sampleRepo -folder 'scenarios'
+        $samples += Parse-SampleJsonFiles -sampleRepo $sampleRepo -folder 'scenarios'
     }
-
-    $samples += $output
 }
 
 [hashtable]$sampleModel = @{}
@@ -116,5 +185,50 @@ $orderedSampleModel = [ordered]@{}
 foreach ($Item in ($sampleModel.GetEnumerator() | Sort-Object -Property Key)) {
     $orderedSampleModel[$Item.Key] = $Item.Value
 }
-New-Object -TypeName psobject -Property $orderedSampleModel | ConvertTo-Json -Depth 10 | Out-File "$workspacePath\data\sp-dev-fx-samples.json"
+
+$jsonOutput = New-Object -TypeName psobject -Property $orderedSampleModel | ConvertTo-Json -Depth 10
+
+try {
+    $null = ConvertFrom-Json -InputObject $jsonOutput -ErrorAction Stop
+    Write-Output "`nJSON validation passed"
+}
+catch {
+    Write-Error "`nGenerated JSON is invalid: $($_.Exception.Message)"
+    exit 1
+}
+
+$jsonOutput | Out-File "$workspacePath\data\sp-dev-fx-samples.json"
+
+$totalSamples = $samples.Count
+$statsByRepo = $samples | Group-Object -Property sampleGallery | Sort-Object Name
+
+$statsLines = @()
+$statsLines += '## Sample Data Summary'
+$statsLines += ''
+$statsLines += '✅ **JSON Validation:** Passed'
+$statsLines += ''
+$statsLines += "**Total Samples:** $totalSamples"
+$statsLines += ''
+$statsLines += '### Breakdown by Repository'
+
+foreach ($stat in $statsByRepo) {
+    $statsLines += "- **$($stat.Name):** $($stat.Count)"
+}
+
+$statsContent = $statsLines -join "`n"
+
+# temp output for PR body; will be deleted after PR is raised
+$statsContent | Out-File "$workspacePath\sample-stats.txt" -Encoding utf8
+
+if ($env:GITHUB_STEP_SUMMARY) {
+    $statsContent | Out-File $env:GITHUB_STEP_SUMMARY -Encoding utf8
+    Write-Output "Statistics written to GitHub Actions summary"
+}
+
+Write-Output "`nSample data update complete: $totalSamples total samples`n"
+foreach ($stat in $statsByRepo) {
+    Write-Output "  $($stat.Name): $($stat.Count)"
+}
+
+exit 0
 

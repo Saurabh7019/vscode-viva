@@ -1,4 +1,3 @@
-import { readFileSync } from 'fs';
 import { commands, workspace, window, Uri, TreeItemCollapsibleState } from 'vscode';
 import { Commands, ContextKeys } from '../constants';
 import { ActionTreeItem, ActionTreeDataProvider } from '../providers/ActionTreeDataProvider';
@@ -8,13 +7,12 @@ import { DebuggerCheck } from '../services/check/DebuggerCheck';
 import { EnvironmentInformation } from '../services/dataType/EnvironmentInformation';
 import { M365AgentsToolkitIntegration } from '../services/dataType/M365AgentsToolkitIntegration';
 import { ProjectInformation } from '../services/dataType/ProjectInformation';
-import { AdaptiveCardCheck } from '../services/check/AdaptiveCardCheck';
 import { Subscription } from '../models';
 import { Extension } from '../services/dataType/Extension';
-import { getExtensionSettings } from '../utils';
+import { getExtensionSettings, parsePackageJson, parseYoRc } from '../utils';
 import { Notifications } from '../services/dataType/Notifications';
 import { helpCommands } from './HelpTreeData';
-import { gulpTaskCommands } from './TaskTreeData';
+import { getCombinedTaskCommands } from './TaskTreeData';
 
 
 export class CommandPanel {
@@ -44,12 +42,8 @@ export class CommandPanel {
       ProjectInformation.isSPFxProject = isSPFxProject;
       M365AgentsToolkitIntegration.isM365AgentsToolkitProject = isM365AgentsToolkitProject;
 
-      CommandPanel.registerTreeView();
+      await CommandPanel.registerTreeView();
       AuthProvider.verify();
-
-      if (isSPFxProject){
-        AdaptiveCardCheck.validateACEComponent();
-      }
 
     } catch (error) {
       commands.executeCommand('setContext', ContextKeys.isSPFxProject, false);
@@ -59,7 +53,12 @@ export class CommandPanel {
     }
   }
 
-  private static registerTreeView() {
+  private static async registerTasksTreeView() {
+    const combinedCommands = await getCombinedTaskCommands();
+    window.registerTreeDataProvider('pnp-view-tasks', new ActionTreeDataProvider(combinedCommands));
+  }
+
+  private static async registerTreeView() {
     const authInstance = AuthProvider.getInstance();
     if (authInstance) {
       authInstance.getAccount().then(account => CommandPanel.accountTreeView(account));
@@ -74,7 +73,7 @@ export class CommandPanel {
     }
 
     if (ProjectInformation.isSPFxProject) {
-      window.registerTreeDataProvider('pnp-view-tasks', new ActionTreeDataProvider(gulpTaskCommands));
+      await CommandPanel.registerTasksTreeView();
     }
 
     window.createTreeView('pnp-view-help',
@@ -204,14 +203,16 @@ export class CommandPanel {
               tenantAppCatalogAppsList.push(
                 new ActionTreeItem(app.Title, '', { name: 'package', custom: false }, undefined, 'vscode.open', Uri.parse(appStoreUrl), ContextKeys.hasAppCatalogApp,
                   [
+                    new ActionTreeItem('Copy', '', undefined, undefined, Commands.copyAppCatalogApp, [app.ID, app.Title, tenantAppCatalogUrl, appCatalogUrls], ContextKeys.copyApp),
                     new ActionTreeItem('Deploy', '', undefined, undefined, Commands.deployAppCatalogApp, [app.ID, app.Title, undefined, app.Deployed], ContextKeys.deployApp),
-                    new ActionTreeItem('Retract', '', undefined, undefined, Commands.retractAppCatalogApp, [app.ID, app.Title, undefined, app.Deployed], ContextKeys.retractApp),
-                    new ActionTreeItem('Remove', '', undefined, undefined, Commands.removeAppCatalogApp, [app.ID, app.Title], ContextKeys.removeApp),
-                    new ActionTreeItem('Enable', '', undefined, undefined, Commands.enableAppCatalogApp, [app.Title, tenantAppCatalogUrl, app.Enabled], ContextKeys.enableApp),
                     new ActionTreeItem('Disable', '', undefined, undefined, Commands.disableAppCatalogApp, [app.Title, tenantAppCatalogUrl, app.Enabled], ContextKeys.disableApp),
-                    new ActionTreeItem('Upgrade', '', undefined, undefined, Commands.upgradeAppCatalogApp, [app.ID, app.Title, tenantAppCatalogUrl, true], ContextKeys.upgradeApp),
+                    new ActionTreeItem('Enable', '', undefined, undefined, Commands.enableAppCatalogApp, [app.Title, tenantAppCatalogUrl, app.Enabled], ContextKeys.enableApp),
                     new ActionTreeItem('Install', '', undefined, undefined, Commands.installAppCatalogApp, [app.ID, app.Title], ContextKeys.installApp),
-                    new ActionTreeItem('Uninstall', '', undefined, undefined, Commands.uninstallAppCatalogApp, [app.ID, app.Title], ContextKeys.uninstallApp)
+                    new ActionTreeItem('Move', '', undefined, undefined, Commands.moveAppCatalogApp, [app.ID, app.Title, tenantAppCatalogUrl, appCatalogUrls], ContextKeys.moveApp),
+                    new ActionTreeItem('Remove', '', undefined, undefined, Commands.removeAppCatalogApp, [app.ID, app.Title], ContextKeys.removeApp),
+                    new ActionTreeItem('Retract', '', undefined, undefined, Commands.retractAppCatalogApp, [app.ID, app.Title, undefined, app.Deployed], ContextKeys.retractApp),
+                    new ActionTreeItem('Uninstall', '', undefined, undefined, Commands.uninstallAppCatalogApp, [app.ID, app.Title], ContextKeys.uninstallApp),
+                    new ActionTreeItem('Upgrade', '', undefined, undefined, Commands.upgradeAppCatalogApp, [app.ID, app.Title, tenantAppCatalogUrl, true], ContextKeys.upgradeApp)
                   ]
                 )
               );
@@ -246,14 +247,16 @@ export class CommandPanel {
                 siteAppCatalogAppsList.push(
                   new ActionTreeItem(app.Title, '', { name: 'package', custom: false }, undefined, 'vscode.open', Uri.parse(appStoreUrl), ContextKeys.hasAppCatalogApp,
                     [
+                      new ActionTreeItem('Copy', '', undefined, undefined, Commands.copyAppCatalogApp, [app.ID, app.Title, siteAppCatalogUrl, appCatalogUrls], ContextKeys.copyApp),
                       new ActionTreeItem('Deploy', '', undefined, undefined, Commands.deployAppCatalogApp, [app.ID, app.Title, siteAppCatalogUrl, app.Deployed], ContextKeys.deployApp),
-                      new ActionTreeItem('Retract', '', undefined, undefined, Commands.retractAppCatalogApp, [app.ID, app.Title, siteAppCatalogUrl, app.Deployed], ContextKeys.retractApp),
-                      new ActionTreeItem('Remove', '', undefined, undefined, Commands.removeAppCatalogApp, [app.ID, app.Title, siteAppCatalogUrl], ContextKeys.removeApp),
-                      new ActionTreeItem('Enable', '', undefined, undefined, Commands.enableAppCatalogApp, [app.Title, siteAppCatalogUrl, app.Enabled], ContextKeys.enableApp),
                       new ActionTreeItem('Disable', '', undefined, undefined, Commands.disableAppCatalogApp, [app.Title, siteAppCatalogUrl, app.Enabled], ContextKeys.disableApp),
-                      new ActionTreeItem('Upgrade', '', undefined, undefined, Commands.upgradeAppCatalogApp, [app.ID, app.Title, siteAppCatalogUrl, false], ContextKeys.upgradeApp),
+                      new ActionTreeItem('Enable', '', undefined, undefined, Commands.enableAppCatalogApp, [app.Title, siteAppCatalogUrl, app.Enabled], ContextKeys.enableApp),
                       new ActionTreeItem('Install', '', undefined, undefined, Commands.installAppCatalogApp, [app.ID, app.Title, siteAppCatalogUrl], ContextKeys.installApp),
-                      new ActionTreeItem('Uninstall', '', undefined, undefined, Commands.uninstallAppCatalogApp, [app.ID, app.Title, siteAppCatalogUrl], ContextKeys.uninstallApp)
+                      new ActionTreeItem('Move', '', undefined, undefined, Commands.moveAppCatalogApp, [app.ID, app.Title, siteAppCatalogUrl, appCatalogUrls], ContextKeys.moveApp),
+                      new ActionTreeItem('Remove', '', undefined, undefined, Commands.removeAppCatalogApp, [app.ID, app.Title, siteAppCatalogUrl], ContextKeys.removeApp),
+                      new ActionTreeItem('Retract', '', undefined, undefined, Commands.retractAppCatalogApp, [app.ID, app.Title, siteAppCatalogUrl, app.Deployed], ContextKeys.retractApp),
+                      new ActionTreeItem('Uninstall', '', undefined, undefined, Commands.uninstallAppCatalogApp, [app.ID, app.Title, siteAppCatalogUrl], ContextKeys.uninstallApp),
+                      new ActionTreeItem('Upgrade', '', undefined, undefined, Commands.upgradeAppCatalogApp, [app.ID, app.Title, siteAppCatalogUrl, false], ContextKeys.upgradeApp)
                     ]
                   )
                 );
@@ -287,6 +290,7 @@ export class CommandPanel {
     if (ProjectInformation.isSPFxProject) {
       actionCommands.push(new ActionTreeItem('Upgrade project SPFx version', '', { name: 'arrow-up', custom: false }, undefined, Commands.upgradeProject));
       actionCommands.push(new ActionTreeItem('Validate project correctness', '', { name: 'check-all', custom: false }, undefined, Commands.validateProject));
+      actionCommands.push(new ActionTreeItem('Validate local setup for current project', '', { name: 'verified', custom: false }, undefined, Commands.validateEnvironmentForProject));
       actionCommands.push(new ActionTreeItem('Rename project', '', { name: 'whole-word', custom: false }, undefined, Commands.renameProject));
       actionCommands.push(new ActionTreeItem('Increase project version', '', { name: 'fold-up', custom: false }, undefined, Commands.increaseVersion));
 
@@ -322,23 +326,16 @@ export class CommandPanel {
   }
 
   private static async isSPFxProject(): Promise<boolean> {
-    const files = await workspace.findFiles('.yo-rc.json', '**/node_modules/**');
-
-    if (files.length <= 0) {
-      return false;
+    const yoRc = await parseYoRc();
+    if (yoRc?.['@microsoft/generator-sharepoint']) {
+      return true;
     }
 
-    const file = files[0];
-    const content = readFileSync(file.fsPath, 'utf8');
-    if (!content) {
-      return false;
+    const packageJson = await parsePackageJson();
+    if (packageJson?.dependencies?.['@microsoft/sp-core-library']) {
+      return true;
     }
 
-    const json = JSON.parse(content);
-    if (!json || !json['@microsoft/generator-sharepoint']) {
-      return false;
-    }
-
-    return true;
+    return false;
   }
 }

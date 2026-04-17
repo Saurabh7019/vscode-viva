@@ -31,6 +31,9 @@ export const Commands = {
   // Validation
   validateProject: `${EXTENSION_NAME}.validateProject`,
 
+  // Validation environment for project
+  validateEnvironmentForProject: `${EXTENSION_NAME}.validateEnvironmentForProject`,
+
   // Rename
   renameProject: `${EXTENSION_NAME}.renameProject`,
 
@@ -46,32 +49,27 @@ export const Commands = {
   // Webviews
   samplesGallery: `${EXTENSION_NAME}.samplesGallery`,
 
-  // Bundle
-  bundleProject: `${EXTENSION_NAME}.bundleProject`,
+  // Gulp
+  gulpBuildProject: `${EXTENSION_NAME}.gulpBuildProject`,
+  gulpBundleProject: `${EXTENSION_NAME}.gulpBundleProject`,
+  gulpCleanProject: `${EXTENSION_NAME}.gulpCleanProject`,
+  gulpDeployToAzureStorage: `${EXTENSION_NAME}.gulpDeployToAzureStorage`,
+  gulpPackageProject: `${EXTENSION_NAME}.gulpPackageProject`,
+  gulpPublishProject: `${EXTENSION_NAME}.gulpPublishProject`,
+  gulpServeProject: `${EXTENSION_NAME}.gulpServeProject`,
+  gulpTestProject: `${EXTENSION_NAME}.gulpTestProject`,
+  gulpTrustDevCert: `${EXTENSION_NAME}.gulpTrustDevCert`,
 
-  // Package
-  packageProject: `${EXTENSION_NAME}.packageProject`,
-
-  // Publish
-  publishProject: `${EXTENSION_NAME}.publishProject`,
-
-  // Serving
-  serveProject: `${EXTENSION_NAME}.serveProject`,
-
-  // Clean
-  cleanProject: `${EXTENSION_NAME}.cleanProject`,
-
-  // Build
-  buildProject: `${EXTENSION_NAME}.buildProject`,
-
-  // Test
-  testProject: `${EXTENSION_NAME}.testProject`,
-
-  // Trust dev cert
-  trustDevCert: `${EXTENSION_NAME}.trustDevCert`,
-
-  // Deploy to Azure Storage
-  deployToAzureStorage: `${EXTENSION_NAME}.deployToAzureStorage`,
+  // Heft
+  heftBuildProject: `${EXTENSION_NAME}.heftBuildProject`,
+  heftCleanProject: `${EXTENSION_NAME}.heftCleanProject`,
+  heftDeployToAzureStorage: `${EXTENSION_NAME}.heftDeployToAzureStorage`,
+  heftEjectProject: `${EXTENSION_NAME}.heftEjectProject`,
+  heftPackageProject: `${EXTENSION_NAME}.heftPackageProject`,
+  heftPublishProject: `${EXTENSION_NAME}.heftPublishProject`,
+  heftStartProject: `${EXTENSION_NAME}.heftStartProject`,
+  heftTestProject: `${EXTENSION_NAME}.heftTestProject`,
+  heftTrustDevCert: `${EXTENSION_NAME}.heftTrustDevCert`,
 
   // TreeViews
   refreshAppCatalogTreeView: `${EXTENSION_NAME}.refreshAppCatalogTreeView`,
@@ -92,6 +90,8 @@ export const Commands = {
   upgradeAppCatalogApp: `${EXTENSION_NAME}.upgradeAppCatalogApp`,
   installAppCatalogApp: `${EXTENSION_NAME}.installAppCatalogApp`,
   uninstallAppCatalogApp: `${EXTENSION_NAME}.uninstallAppCatalogApp`,
+  copyAppCatalogApp: `${EXTENSION_NAME}.copyAppCatalogApp`,
+  moveAppCatalogApp: `${EXTENSION_NAME}.moveAppCatalogApp`,
   showMoreActions: `${EXTENSION_NAME}.showMoreActions`,
 
   // App Catalog actions

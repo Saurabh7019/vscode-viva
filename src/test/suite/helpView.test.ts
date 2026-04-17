@@ -73,6 +73,7 @@ suite('Help and feedback', () => {
             'Microsoft Graph Explorer',
             'Microsoft 365 Agents Toolkit',
             'Adaptive Card Previewer',
+            'CLI for Microsoft 365 MCP server',
             'SharePoint Embedded',
             'Adaptive Card Designer',
             'Join the Microsoft 365 Developer Program',
@@ -173,6 +174,10 @@ suite('Help and feedback', () => {
                 url: 'https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.ms-teams-vscode-extension'
             },
             {
+                label: 'CLI for Microsoft 365 MCP server',
+                url: 'https://github.com/pnp/cli-microsoft365-mcp-server'
+            },
+            {
                 label: 'Adaptive Card Previewer',
                 url: 'https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-adaptive-cards'
             },
@@ -182,7 +187,7 @@ suite('Help and feedback', () => {
             },
             {
                 label: 'Adaptive Card Designer',
-                url: 'https://adaptivecards.io/designer/'
+                url: 'https://adaptivecards.microsoft.com/designer'
             },
             {
                 label: 'Join the Microsoft 365 Developer Program',

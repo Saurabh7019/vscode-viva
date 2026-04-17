@@ -32,10 +32,6 @@ export default defineConfig({
 					link: 'getting-started',
 				},
 				{
-					label: 'Scenarios',
-					link: 'scenarios',
-				},
-				{
 					label: 'Features',
 					items: [
 						{ label: 'Welcome experience & Walkthrough', link: 'features/welcome-experience-and-walkthrough' },
@@ -51,7 +47,14 @@ export default defineConfig({
 					],
 				},
 				{
-					label: 'Contribution guidance',
+					label: 'Scenarios',
+					items: [
+						{ label: 'Upgrade SPFx project using SPFx Toolkit language model tools in GitHub Copilot Chat', link: 'scenarios/spfx-project-upgrade-lm-tool' },
+						{ label: 'Manage SharePoint pages using SPFx Toolkit language model tools in GitHub Copilot Chat', link: 'scenarios/manage-sp-pages-lm-tools' }
+					],
+				},
+				{
+					label: 'Contributing guidance',
 					link: 'contributing-guidance',
 				},
 				{
